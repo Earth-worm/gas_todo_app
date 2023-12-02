@@ -2,6 +2,7 @@
 const spreadSheetID = PropertiesService.getScriptProperties().getProperty("SpreadSheetID")
 const sheetName = "task"
 
+
 function createItem(title,deadline){
   var sheet = SpreadsheetApp.openById(spreadSheetID).getSheetByName(sheetName);
   var lastRow = sheet.getLastRow();
@@ -18,6 +19,7 @@ function createItem(title,deadline){
     title: title,
     deadline: deadline,
     isCompleted: false,
+    createdAt: Date(),
   }
 }
 
@@ -42,10 +44,10 @@ function getItems(filter=null){
   var items = [];
 
   for (var i = 1; i < values.length; i++) {
-    if(filter.deadline !== undefined && String(filter.deadline) !== String(values[i][2])){
+    if(filter?.deadline !== undefined && String(filter.deadline) !== String(values[i][2])){
       continue
     }
-    if(filter.isCompleted !== undefined && filter.isCompleted !== values[i][3]){
+    if(filter?.isCompleted !== undefined && filter.isCompleted !== values[i][3]){
       console.log(filter.isCompleted,values[i][3])
       continue
     }

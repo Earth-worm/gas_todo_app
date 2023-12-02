@@ -1,7 +1,7 @@
 function doGet(){
   const template = HtmlService.createTemplateFromFile("index.html")
-  //template.URL = ScriptApp.getService().getUrl()
-  template.URL = "https://script.google.com/macros/s/AKfycbznGNmO-E4o1d0opxqQDaubjCedU3gK-_mJM45B9ZDhvcVumD-mRGNH1EBtVeRRTdv_/exec"
+  template.URL = ScriptApp.getService().getUrl()
+  //template.URL = "https://script.google.com/macros/s/AKfycbznGNmO-E4o1d0opxqQDaubjCedU3gK-_mJM45B9ZDhvcVumD-mRGNH1EBtVeRRTdv_/exec"                                           
   return template.evaluate();
 }
 
@@ -20,8 +20,7 @@ function doPost(request){
 }
 
 function log(request){
-  var sheetName = "log";
-  var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(sheetName);
+  var sheet = SpreadsheetApp.openById(spreadSheetID).getSheetByName("log");
   var lastRow = sheet.getLastRow();
   var newRow = lastRow + 1;
   var today = new Date();
