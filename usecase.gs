@@ -1,3 +1,17 @@
+// 追記
+function test(){
+  sendToAllUser([generateMessage("こんにちは！")])
+}
+
+function stump(){
+  sendToAllUser([{
+    "type":"sticker",
+    "packageId":"446",
+    "stickerId":"1988"
+  }])
+}
+
+
 function usecaseAddTask(params){
   const title = params.title
   const deadline = params.deadline
@@ -38,6 +52,7 @@ function usecaseSendTodayTask(){
   const tasks = getItems({deadline:today})
   if(tasks.length == 0){
     sendToAllUser([generateMessage("本日のタスクはありません。")])
+    return
   }
   sendToAllUser([generateMessage("本日のタスクが届いています"),generateTasksMessage(tasks)])
 }
